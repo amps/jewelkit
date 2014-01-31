@@ -3,7 +3,7 @@ SET(Skia_LIBS ${Skia_Base}core.a ${Skia_Base}images.a ${Skia_Base}skgpu.a ${Skia
 
 add_custom_command(
 OUTPUT ${Skia_LIBS}
-COMMAND make skia_lib BUILDTYPE=Release
+COMMAND gclient config --name . https://skia.googlesource.com/skia.git && gclient sync && ./gyp_skia && make skia_lib BUILDTYPE=Release
 WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/deps/skia
 )
 
