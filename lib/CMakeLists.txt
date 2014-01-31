@@ -7,12 +7,8 @@ SET(LIB_SOURCES
 toolkit
 )
 
+INCLUDE(skia)
 
-
-
-SET(Skia_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/../deps/skia/out/Release/")
-SET(Skia_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../deps/skia/")
-find_package(Skia  REQUIRED)
 
 INCLUDE_DIRECTORIES(${V8_INCLUDE})
 INCLUDE_DIRECTORIES(${SKIA_INCLUDE}/core)
@@ -29,6 +25,7 @@ INCLUDE_DIRECTORIES(${SKIA_INCLUDE}/ports)
 INCLUDE_DIRECTORIES(${SKIA_INCLUDE}/pipe)
 INCLUDE_DIRECTORIES(${SKIA_INCLUDE})
 INCLUDE_DIRECTORIES(${GLFW_SOURCE_DIR}/include)
-add_library(${PROJECT_NAME} SHARED ${LIB_SOURCES})
-target_link_libraries(${PROJECT_NAME} ${SKIA_LIBS} )
+add_library(${PROJECT_NAME} STATIC ${LIB_SOURCES})
+message(${Skia_LIBS})
+target_link_libraries(${PROJECT_NAME} ${Skia_LIBS} )
 add_dependencies(${PROJECT_NAME} skia_lib)
